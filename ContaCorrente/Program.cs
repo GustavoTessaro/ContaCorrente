@@ -17,8 +17,9 @@ class Program
             Console.WriteLine("1 - Saque");
             Console.WriteLine("2 - Depósito");
             Console.WriteLine("3 - Consultar Saldos das contas");
-            Console.WriteLine("4 - Transferência");
-            Console.WriteLine("5 - Sair");
+            Console.WriteLine("4 - Consultar Extrato");
+            Console.WriteLine("5 - Transferência");
+            Console.WriteLine("6 - Sair");
             opcao = (int)char.GetNumericValue(Console.ReadKey(true).KeyChar);
 
             switch (opcao)
@@ -40,13 +41,18 @@ class Program
                     while (Console.KeyAvailable) Console.ReadKey(true);
                     break;
                 case 4:
+                    conta1.ExibirExtrato();
+                    Thread.Sleep(3000);
+                    while (Console.KeyAvailable) Console.ReadKey(true);
+                    break;
+                case 5:
                     Console.WriteLine("Digite o valor da transferência:");
                     double valorTransferencia = Convert.ToDouble(Console.ReadLine());
                     conta1.Transferir(conta2, valorTransferencia);
                     Thread.Sleep(3000);
                     while (Console.KeyAvailable) Console.ReadKey(true);
                     break;
-                case 5:
+                case 6:
                     Console.WriteLine("Saindo...");
                     break;
                 default:
@@ -56,7 +62,7 @@ class Program
                     break;
             }
 
-        } while (opcao != 5);
+        } while (opcao != 6);
 
     }
 

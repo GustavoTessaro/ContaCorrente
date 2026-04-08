@@ -5,6 +5,8 @@ class Conta
     private int ID;
     private double saldo;
 
+    private List<string> extrato = new List<string>();
+
     public Conta(string titular, int ID, double saldo)
     {
         this.titular = titular;
@@ -30,6 +32,19 @@ class Conta
     public void Depositar(double valor)
     {
         saldo += valor;
+
+        extrato.Add($"Crédito de: R${valor}, Saldo atualizado: R${saldo}");
+
+    }
+
+    public void ExibirExtrato()
+    {
+        Console.WriteLine($"Extrato da conta de {titular}:");
+        
+        foreach (string operacao in extrato)
+        {
+            Console.WriteLine(operacao);
+        }
     }
 
     public bool Sacar(double valor)
@@ -42,6 +57,9 @@ class Conta
         if (pivo >= -200)
         {
             saldo -= valor;
+
+            extrato.Add($"Débito de: R${valor}, Saldo atualizado: R${saldo}");
+
             return true;
         }
         else
@@ -57,6 +75,9 @@ class Conta
         if (verifica == true)
         {
             contaDestino.Depositar(valorTransferencia);
+
+            extrato.Add($"Débito de: R${valorTransferencia}, Saldo atualizado: R${saldo}");
+
             Console.WriteLine("Transferência realizada com sucesso.");
         }
         else
